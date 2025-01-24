@@ -1,3 +1,6 @@
+using Company.Repository.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Company.APls
 {
     public class Program
@@ -6,6 +9,8 @@ namespace Company.APls
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            #region Configur Services
+
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -13,7 +18,20 @@ namespace Company.APls
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddDbContext<StoreContext>(option =>
+            {
+                option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+
+
+
+
+            #endregion
+
             var app = builder.Build();
+
+            #region Configur - Configure the Http Request 
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -28,6 +46,8 @@ namespace Company.APls
 
 
             app.MapControllers();
+
+            #endregion
 
             app.Run();
         }
