@@ -21,14 +21,15 @@ namespace Company.Repository
         }
 
 
-        public Task AddAsync(T item)
+        public async Task AddAsync(T item)
         {
-            throw new NotImplementedException();
+          await  _storeContext.Set<T>().AddAsync(item);
         }
 
         public void Delete(T item)
         {
-            throw new NotImplementedException();
+           _storeContext.Set<T>().Remove(item);
+
         }
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
@@ -43,7 +44,7 @@ namespace Company.Repository
 
         public void Update(T item)
         {
-            throw new NotImplementedException();
+            _storeContext.Set<T>().Update(item);
         }
     }
 }
