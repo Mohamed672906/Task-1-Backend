@@ -5,7 +5,7 @@ namespace Company.APls
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +30,22 @@ namespace Company.APls
             #endregion
 
             var app = builder.Build();
+
+            #region Updata DataBase
+
+            using var Scope = app.Services.CreateScope();
+
+            var Service = Scope.ServiceProvider;
+
+            var dbContext = Service.GetRequiredService<StoreContext>();
+
+            await dbContext.Database.MigrateAsync();
+
+
+            #endregion
+
+
+
 
             #region Configur - Configure the Http Request 
 
