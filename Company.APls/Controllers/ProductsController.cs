@@ -19,8 +19,12 @@ namespace Company.APls.Controllers
 
         // Get All Product 
 
-
-
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        {
+            var Products = await _productRepo.GetAllAsync();
+            return Ok(Products);
+        }
 
 
 
