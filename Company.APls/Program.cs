@@ -1,3 +1,5 @@
+using Company.Core.Repository;
+using Company.Repository;
 using Company.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +25,7 @@ namespace Company.APls
                 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 
 
