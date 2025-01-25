@@ -29,7 +29,9 @@ namespace Company.APls
 
             #endregion
 
+
             var app = builder.Build();
+
 
             #region Updata DataBase
 
