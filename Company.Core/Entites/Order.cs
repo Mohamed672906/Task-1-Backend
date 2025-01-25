@@ -13,7 +13,7 @@ namespace Company.Core.Entites
 
         public int CustomerId { get; set; }
 
-        public string OrderData { get; set; }
+        public string OrderDate { get; set; }
 
         public decimal TotalAmount { get; set; }
 
